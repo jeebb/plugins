@@ -19,6 +19,8 @@
     UIDevice* device = [UIDevice currentDevice];
     struct utsname un;
     uname(&un);
+    
+    NSString* idfv = [[device identifierForVendor] UUIDString];
 
     result(@{
       @"name" : [device name],
@@ -26,7 +28,7 @@
       @"systemVersion" : [device systemVersion],
       @"model" : [device model],
       @"localizedModel" : [device localizedModel],
-      @"identifierForVendor" : [[device identifierForVendor] UUIDString],
+      @"identifierForVendor" : (idfv) ? idfv : @"",
       @"isPhysicalDevice" : [self isDevicePhysical],
       @"utsname" : @{
         @"sysname" : @(un.sysname),
